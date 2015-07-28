@@ -1,5 +1,6 @@
 ---
 - name: generate systemd unit file
+  sudo: yes
   template:
     src: etcd.service.j2
     dest: /usr/lib/systemd/system/etcd.service
@@ -13,6 +14,7 @@
     - etcd
 
 - name: install consul check script
+  sudo: yes
   template:
     src: consul-check-etcd-member
     dest: /usr/local/bin
@@ -21,6 +23,7 @@
     - etcd
 
 - name: enable and start etcd
+  sudo: yes
   service:
     name: etcd
     enabled: yes

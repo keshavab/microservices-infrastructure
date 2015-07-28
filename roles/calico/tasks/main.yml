@@ -1,6 +1,7 @@
 ---
 # Ansible modprobe module doesn't provide such functionality
 - name: add kernel modules to load at boot time
+  sudo: yes
   copy:
     src: calico-modules.conf
     dest: /etc/modules-load.d/calico-modules.conf
@@ -11,6 +12,7 @@
     - calico
 
 - name: load kernel module xt_set
+  sudo: yes
   modprobe:
     name: xt_set
     state: present
@@ -18,6 +20,7 @@
     - calico
 
 - name: enable kernel packet forwarding
+  sudo: yes
   sysctl:
     name: net.ipv4.ip_forward
     value: 1
@@ -27,6 +30,7 @@
     - calico
 
 - name: download calicoctl binary
+  sudo: yes
   get_url:
     url: "{{ calico_binary }}"
     dest: /usr/bin/calicoctl
@@ -36,6 +40,7 @@
     - bootstrap
 
 - name: download calicoctl bash completion script
+  sudo: yes
   get_url:
     url: "{{ bintray_baseurl }}/calico/calicoctl.sh"
     dest: /etc/bash_completion.d/calicoctl.sh
@@ -46,12 +51,14 @@
 # We can't use the Ansible standard docker module as it always starts
 # containers after image was pulled
 - name: ensure calico docker image is present
+  sudo: yes
   command: /usr/bin/docker pull {{ calico_image }}:{{ calico_image_tag }}
   tags:
     - calico
     - bootstrap
 
 - name: generate systemd unit file
+  sudo: yes
   template:
     src: calico.service.j2
     dest: /usr/lib/systemd/system/calico.service
@@ -65,6 +72,7 @@
     - calico
 
 - name: install consul check script
+  sudo: yes
   copy:
     src: consul-check-calico-node
     dest: /usr/local/bin
@@ -73,6 +81,7 @@
     - calico
 
 - name: register calico with consul
+  sudo: yes
   copy:
     src: calico-service.json
     dest: /etc/consul
@@ -85,6 +94,7 @@
   when: provider == 'openstack'
 
 - name: enable and start calico
+  sudo: yes
   service:
     name: calico
     enabled: yes

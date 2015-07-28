@@ -19,7 +19,6 @@
 # `roles/` directory, or by checking the online documentation at
 # microservices-infrastructure.readthedocs.org.
 - hosts: all
-  sudo: yes
   vars:
     # consul_acl_datacenter should be set to the datacenter you want to control
     # Consul ACLs. If you only have one datacenter, set it to that or remove
@@ -54,7 +53,6 @@
 # run software that the Mesos leader shedules. It also forwards traffic to
 # globally known ports configured through Marathon.
 - hosts: role=worker
-  sudo: yes
   # role=worker hosts are a subset of "all". Since we already gathered facts on
   # all servers, we can skip it here to speed up the deployment.
   gather_facts: no
