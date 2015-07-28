@@ -101,6 +101,7 @@ Examples:
 
 .. code-block:: shell
 
+   calicoctl help
    calicoctl status
    calicoctl profile show --detailed
    calicoctl endpoint show --detailed
