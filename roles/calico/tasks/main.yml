@@ -57,6 +57,19 @@
     - calico
     - bootstrap
 
+- name: set calico environment
+  sudo: yes
+  template:
+    src: calico.j2
+    dest: /etc/default/calico
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart calico
+  tags:
+    - calico
+
 - name: generate systemd unit file
   sudo: yes
   template:
