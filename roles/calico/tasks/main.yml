@@ -59,8 +59,8 @@
 
 - name: set calico environment
   sudo: yes
-  template:
-    src: calico.j2
+  copy:
+    content: "ETCD_AUTHORITY={{ calico_etcdaddr }}"
     dest: /etc/default/calico
     owner: root
     group: root
