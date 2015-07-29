@@ -17,7 +17,7 @@ Modes
 Calico can run a public cloud environment that does not allow either L3 peering
 or L2 connectivity between Calico hosts. Calico will then route traffic between
 the Calico hosts using IP in IP mode. At this time, the full node-to-node BGP
-mesh is supported and configured in CiscoCloud only. Other cloud environments
+mesh is supported and configured in OpenStack only. Other cloud environments
 are set up with the IP in IP mode.
 
 Mesos

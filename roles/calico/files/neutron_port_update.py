@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # This script updates the allowed address pairs in Neutron with the
-# 'neutron port-update' command. This is required by Calico in CiscoCloud,
+# 'neutron port-update' command. This is required by Calico in OpenStack,
 # otherwise BGP will not be working. We query OpenStack API directly to prevent
 # installing any dependencies such as python-neutronclient.
 #
