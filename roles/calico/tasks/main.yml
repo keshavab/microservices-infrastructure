@@ -53,6 +53,8 @@
 - name: ensure calico docker image is present
   sudo: yes
   command: /usr/bin/docker pull {{ calico_image }}:{{ calico_image_tag }}
+  notify:
+    - restart calico
   tags:
     - calico
     - bootstrap
